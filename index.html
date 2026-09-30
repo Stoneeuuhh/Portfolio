@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matthias DE OLIVEIRA — Développeur</title>
+<meta name="description" content="Portfolio de Matthias DE OLIVEIRA, étudiant en BUT Informatique à l'IUT de Laval : projets web, SAE Spotify, gestion de projet ADIIL, CV vidéo et contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbfcfe;
+  --rule:#b9c9ec;
+  --rule-fine:#e3eaf8;
+  --ink:#1b2a6b;
+  --ink-soft:#44548c;
+  --red:#d9383d;
+  --hl:#ffe45c;
+  --u:32px;
+  --marge:126px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+::selection{background:var(--hl);color:var(--ink)}
+body{
+  margin:0;
+  color:var(--ink);
+  font:400 17px/32px "Atkinson Hyperlegible",system-ui,sans-serif;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--rule-fine) 1px,transparent 1px),
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule-fine) 1px,transparent 1px);
+  background-size:var(--u) 8px, var(--u) var(--u), var(--u) var(--u);
+  background-position:0 23px;
+  position:relative;
+  min-height:100vh;
+}
+/* Marge rouge du cahier : double trait */
+body::before{
+  content:"";position:absolute;top:0;bottom:0;left:var(--marge);width:5px;
+  border-left:1px solid var(--red);border-right:1px solid var(--red);opacity:.8;
+}
+/* Nom et prénom, à gauche de la marge */
+.nom{
+  position:absolute;top:96px;left:0;width:var(--marge);padding-left:16px;
+  font:700 19px/32px "Bricolage Grotesque",sans-serif;letter-spacing:-.01em;
+}
+.nom strong{display:block;font-weight:700}
+.nom strong+strong{margin-top:32px;font-weight:600}
+.nom-mobile{display:none}
+
+.page{padding:0 32px 64px calc(var(--marge) + 48px);max-width:1120px}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* Navigation collante sur toute la largeur avec menu centré */
+header{
+  position:sticky;top:0;z-index:10;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0 32px;
+  padding:16px 48px;
+  width:100%;
+  background:rgba(251,252,254,.88);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--rule-fine);
+}
+header strong{font-family:"Bricolage Grotesque",sans-serif;font-weight:700}
+nav{display:flex;gap:28px}
+nav a{
+  text-decoration:none;
+  background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88%/0 .5em;
+  transition:background-size .2s ease;
+}
+nav a:hover,nav a:focus-visible{background-size:100% .5em}
+
+h1,h2{font-family:"Bricolage Grotesque",sans-serif;margin:0}
+h1{
+  font-family:"Space Grotesk",sans-serif;
+  position:relative;display:inline-block;text-wrap:balance;
+  font-weight:700;font-size:clamp(48px,10vw,116px);line-height:1.05;letter-spacing:-.035em;
+  margin-top:96px;padding-bottom:12px;
+}
+h1::after{
+  content:"";position:absolute;left:0;bottom:0;height:6px;width:100%;background:var(--red);
+  transform-origin:left;animation:draw .9s .2s cubic-bezier(.6,0,.2,1) both;
+}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Hero */
+.role{
+  margin:24px 0 0;
+  font:700 14px/32px "Atkinson Hyperlegible",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);
+}
+.stage{
+  display:inline-block;margin-top:32px;padding:16px 32px 32px;
+  background:#fff;border:3px solid var(--red);
+  box-shadow:6px 6px 0 var(--ink);
+  transform:rotate(-1deg);
+}
+.stage p{margin:0;font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.02em;text-wrap:balance}
+.stage-titre{font-weight:800;font-size:clamp(30px,5vw,52px);line-height:64px}
+.stage-dates{font-weight:700;font-size:clamp(22px,3.6vw,36px);line-height:40px}
+.stage mark{padding:0 6px}
+.lede{font-size:21px;max-width:34em;margin:32px 0 0;text-wrap:pretty}
+mark{background:linear-gradient(transparent 55%,var(--hl) 55%);color:inherit;padding:0 2px}
+.cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+
+/* Objectifs : stage, alternance, master */
+.plan{
+  list-style:none;margin:32px 0 0;padding:0;max-width:48em;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;
+}
+.plan li{
+  padding:12px 20px 20px;background:#fff;
+  border:2px solid var(--ink);border-top:6px solid var(--red);
+  box-shadow:4px 4px 0 var(--rule);
+}
+.plan span{
+  display:block;font:700 13px/32px "Atkinson Hyperlegible",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);
+}
+.plan p{margin:0;font-size:16px;line-height:24px}
+
+section{margin-top:128px}
+h2{display:inline-block;font-weight:700;font-size:38px;line-height:64px;letter-spacing:-.02em;border-bottom:4px double var(--red)}
+section>p,.frame,.projects,.links{margin-top:32px}
+
+/* Sections numérotées */
+main{counter-reset:s}
+section{counter-increment:s}
+h2::before{
+  content:"0" counter(s);
+  display:inline-block;margin-right:14px;vertical-align:middle;
+  font:700 15px/1 "Atkinson Hyperlegible",sans-serif;letter-spacing:.1em;color:var(--red);
+}
+
+/* Vidéo : morceau de scotch */
+.frame{
+  position:relative;max-width:800px;aspect-ratio:16/9;
+  border:2px solid var(--ink);background:#fff;box-shadow:4px 4px 0 var(--rule);
+}
+.frame::before{
+  content:"";position:absolute;z-index:1;top:-14px;left:50%;width:120px;height:28px;
+  transform:translateX(-50%) rotate(-2deg);
+  background:rgba(255,228,92,.8);box-shadow:0 1px 3px rgba(27,42,107,.2);
+  pointer-events:none;
+}
+.frame iframe{display:block;width:100%;height:100%;border:0}
+.caption{color:var(--ink-soft);margin:16px 0 0;font-size:15px}
+
+/* Projets : fiches papier */
+.projects{list-style:none;padding:0;display:grid;gap:64px;max-width:44em;counter-reset:p}
+.projects>li{
+  position:relative;counter-increment:p;
+  padding:44px 32px 32px;background:#fff;border:2px solid var(--ink);
+  box-shadow:4px 4px 0 var(--rule);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.projects>li:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--red)}
+/* Étiquette numérotée collée sur le bord de la fiche */
+.projects>li::before{
+  content:"Projet " counter(p,decimal-leading-zero);
+  position:absolute;top:-16px;left:24px;padding:0 14px;
+  font:700 13px/30px "Atkinson Hyperlegible",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--red);color:#fff;transform:rotate(-1.5deg);
+}
+.kind{
+  display:inline-block;margin-bottom:16px;padding:0 12px;
+  font:700 12px/28px "Atkinson Hyperlegible",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+  background:var(--hl);
+}
+.projects h3{font:700 28px/32px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;margin:0 0 16px}
+.projects h3 a{
+  text-decoration:none;
+  background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 90%/0 .55em;
+  transition:background-size .25s ease;
+}
+.projects h3 a:hover,.projects h3 a:focus-visible{background-size:100% .55em}
+.projects p{margin:0 0 16px}
+.stack{
+  list-style:none;margin:0;padding:16px 0 0;border-top:1px dashed var(--rule);
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.stack li{
+  background:var(--rule-fine);border:1px solid var(--rule);border-radius:4px;
+  padding:0 12px;line-height:28px;font-size:14px;color:var(--ink-soft);
+}
+
+.project-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.project-links a{
+  font-size:14px;font-weight:700;text-decoration:none;
+  padding:6px 14px;background:var(--rule-fine);border:1px solid var(--rule);
+  border-radius:4px;color:var(--ink);transition:all .2s ease;
+}
+.project-links a:hover{background:var(--hl);border-color:var(--ink)}
+.project-links a::after{content:"→";margin-left:8px;display:inline-block;transition:transform .2s ease}
+.project-links a:hover::after{transform:translateX(4px)}
+
+.btn{
+  display:inline-block;padding:0 28px;line-height:48px;font-weight:700;text-decoration:none;
+  background:var(--ink);color:#fff;border:2px solid var(--ink);
+  box-shadow:4px 4px 0 var(--rule);
+  transition:all .2s ease;
+}
+.btn:hover{background:var(--hl);color:var(--ink);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink)}
+
+.links{list-style:none;padding:0}
+.links li{display:flex;gap:24px;margin-bottom:16px}
+.links span{min-width:88px;color:var(--ink-soft);font-weight:700}
+.links a{
+  background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 90%/0 .5em;
+  text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:5px;
+  transition:background-size .2s ease;
+}
+.links a:hover,.links a:focus-visible{background-size:100% .5em}
+footer{margin-top:160px;color:var(--ink-soft);font-size:15px;border-top:1px dashed var(--rule);padding-top:24px}
+
+@media (max-width:900px){
+  :root{--marge:96px}
+  .nom{font-size:15px;padding-left:10px}
+  .page{padding-left:calc(var(--marge) + 32px)}
+}
+@media (max-width:640px){
+  body::before{left:20px}
+  .nom{display:none}
+  .nom-mobile{display:block}
+  header{justify-content:space-between;padding:16px 20px;}
+  .page{padding:0 16px 48px 48px}
+  nav{gap:16px}
+  h1{margin-top:64px}
+  h2{font-size:30px}
+  section{margin-top:96px}
+  .projects>li{padding:40px 20px 24px}
+  .links li{flex-direction:column;gap:0}
+  .links a{overflow-wrap:anywhere}
+}
+@media (prefers-reduced-motion:reduce){
+  h1::after{animation:none}
+  html{scroll-behavior:auto}
+  .projects>li,.projects h3 a,nav a,.links a,.btn,.project-links a::after{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <strong class="nom-mobile">Matthias DE OLIVEIRA</strong>
+  <nav aria-label="Navigation principale">
+    <a href="#video">Vidéo</a>
+    <a href="#projets">Projets</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="page">
+  <main>
+    <h1>Matthias DE&nbsp;OLIVEIRA</h1>
+    <p class="role">Développeur web &amp; logiciel · IUT de Laval</p>
+    <aside class="stage" aria-label="Recherche de stage">
+      <p class="stage-titre">Je recherche un stage</p>
+      <p class="stage-dates">du <mark>12 avril</mark> au <mark>4 juin</mark> minimum</p>
+    </aside>
+    <p class="lede">Étudiant en 2e année de <mark>BUT Informatique</mark> à l'IUT de Laval, je conçois des applications robustes et des outils pour la vie étudiante. À travers mes projets universitaires et associatifs, j'applique des méthodes rigoureuses : programmation orientée objet, conception logicielle et optimisation algorithmique.</p>
+    <ul class="plan" aria-label="Mes objectifs">
+      <li><span>Stage</span><p>Principalement sur <mark>Laval</mark> et <mark>Angers</mark>, mais prêt à partir partout en France, et même à l'étranger.</p></li>
+      <li><span>Après le stage</span><p>Totalement ouvert à une <mark>alternance</mark>.</p></li>
+      <li><span>Après le BUT</span><p>Je compte bien poursuivre en <mark>master</mark> en rapport avec <mark>l'IA</mark> (mais rien n'est gravé dans le marbre !).</p></li>
+    </ul>
+    <p class="cta">
+      <a class="btn" href="#projets">Voir mes projets</a>
+      <a class="btn btn-ghost" href="#contact">Me contacter</a>
+    </p>
+
+    <section id="video">
+      <h2>Vidéo de présentation</h2>
+      <div class="frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/M-BbXtu3ZDg" title="CV vidéo de Matthias DE OLIVEIRA" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="caption">Durée : 1 min 12 — Présentation de mon parcours, mes compétences et mes motivations.</p>
+    </section>
+
+    <section id="projets">
+      <h2>Projets</h2>
+      <ul class="projects">
+        <li>
+          <span class="kind">Projet associatif</span>
+          <h3><a href="https://adiil.fr" target="_blank" rel="noopener">ADIIL.FR</a></h3>
+          <p>Plateforme officielle de gestion et d'événements pour l'association et le BDE de l'IUT de Laval. Permet de gérer la billetterie des soirées étudiantes, les cotisations et l'administration interne. Défi technique : prise en main et intégration de nouvelles fonctionnalités à un projet déjà existant, utilisation de nouvelles technologies.</p>
+          <ul class="stack"><li>TypeScript</li><li>React</li><li>Prisma</li></ul>
+          <div class="project-links">
+            <a href="https://adiil.fr" target="_blank" rel="noopener">Voir le site</a>
+            <a href="https://github.com/Association-ADIIL/front" target="_blank" rel="noopener">Voir le code</a>
+          </div>
+        </li>
+        <li>
+          <span class="kind">Gestion de projet &amp; Collaboration</span>
+          <h3>Pilotage d'un projet d'envergure en équipe de 15 — Voyage ADIIL à Paris</h3>
+          <p>Coordination globale et travail d'équipe au sein d'un groupe de 15 personnes pour l'organisation de A à Z d'une journée pédagogique et culturelle à Paris. Mise en œuvre de méthodes de gestion de projet avancées : planification rigoureuse (diagrammes de Gantt et PERT, tableaux d'antériorité), pilotage d'un budget prévisionnel strict, analyse approfondie des risques (modèle du Fromage Suisse), négociation de devis de transport et structuration de l'équipe par pôles de compétences.</p>
+          <ul class="stack"><li>Gestion de projet</li><li>Gantt / PERT</li><li>Management d'équipe</li><li>Planification</li></ul>
+          <div class="project-links">
+            <a href="SAE à 15.pdf" download>Télécharger le dossier d'organisation (PDF)</a>
+            <a href="SAE à 15 2.pdf" download>Télécharger le dossier administratif &amp; financier (PDF)</a>
+          </div>
+        </li>
+        <li>
+          <span class="kind">Projet universitaire</span>
+          <h3><a href="https://github.com/leandre-1/SAE_102_Spotify" target="_blank" rel="noopener">Projet Spotify</a></h3>
+          <p>Analyse comparative de performances algorithmiques (tri et recherche) sur des jeux de données de streaming musical volumineux. Réalisé en duo, ce projet universitaire a consisté à mesurer et comparer l'efficacité de différents algorithmes (tris fusion vs sélection, recherche dichotomique).</p>
+          <ul class="stack"><li>Java (POO)</li><li>Algorithmique</li></ul>
+          <div class="project-links">
+            <a href="https://github.com/leandre-1/SAE_102_Spotify" target="_blank" rel="noopener">Voir le code</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="cv">
+      <h2>CV</h2>
+      <p>Mon parcours académique, mes compétences techniques (PHP, Java, SQL, Python...) et mes expériences en une page.</p>
+      <p><a class="btn" href="CV.pdf" download>Télécharger le CV (PDF)</a></p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <ul class="links">
+        <li><span>E-mail</span><a href="mailto:matthias.deoliveira.pro@gmail.com">matthias.deoliveira.pro@gmail.com</a></li>
+        <li><span>GitHub</span><a href="https://github.com/Stoneeuuhh" target="_blank" rel="noopener">github.com/Stoneeuuhh</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/matthias-de-oliveira-050017394/" target="_blank" rel="noopener">linkedin.com/in/matthias-de-oliveira</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>© 2026 Matthias DE OLIVEIRA</footer>
+</div>
+</body>
+</html>
