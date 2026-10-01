@@ -148,6 +148,19 @@ h2::before{
   pointer-events:none;
 }
 .frame iframe{display:block;width:100%;height:100%;border:0}
+.yt-facade{
+  position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;
+  background:var(--ink);
+}
+.yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:84px;height:60px;display:grid;place-items:center;
+  background:var(--red);color:#fff;font-size:28px;border:3px solid #fff;
+  box-shadow:4px 4px 0 var(--ink);transition:transform .2s ease;
+}
+.yt-facade:hover .yt-play,.yt-facade:focus-visible .yt-play{transform:translate(-50%,-50%) scale(1.08)}
+.yt-facade:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .caption{color:var(--ink-soft);margin:16px 0 0;font-size:15px}
 
 /* Projets : fiches papier */
@@ -279,9 +292,15 @@ footer{margin-top:160px;color:var(--ink-soft);font-size:15px;border-top:1px dash
 
     <section id="video">
       <h2>Vidéo de présentation</h2>
-      <div class="frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/M-BbXtu3ZDg" title="CV vidéo de Matthias DE OLIVEIRA" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-      </div>
+      <div class="frame" id="yt-frame" data-id="M-BbXtu3ZDg">
+  <button type="button" class="yt-facade" aria-label="Lire la vidéo de présentation">
+    <img src="https://i.ytimg.com/vi/M-BbXtu3ZDg/hqdefault.jpg" alt="" loading="lazy">
+    <span class="yt-play" aria-hidden="true">▶</span>
+  </button>
+</div>
+<p class="caption">Durée : 1 min 12 — Présentation de mon parcours, mes compétences et mes motivations.
+  <a href="https://www.youtube.com/watch?v=M-BbXtu3ZDg" target="_blank" rel="noopener">Voir sur YouTube</a>
+</p>
       <p class="caption">Durée : 1 min 12 — Présentation de mon parcours, mes compétences et mes motivations.</p>
     </section>
 
@@ -338,5 +357,16 @@ footer{margin-top:160px;color:var(--ink-soft);font-size:15px;border-top:1px dash
 
   <footer>© 2026 Matthias DE OLIVEIRA</footer>
 </div>
+<script>
+  const frame = document.getElementById('yt-frame');
+  frame.querySelector('.yt-facade').addEventListener('click', () => {
+    frame.innerHTML = `<iframe
+      src="https://www.youtube-nocookie.com/embed/${frame.dataset.id}?autoplay=1&rel=0"
+      title="CV vidéo de Matthias DE OLIVEIRA"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="autoplay; accelerometer; encrypted-media; picture-in-picture"
+      allowfullscreen></iframe>`;
+  });
+</script>
 </body>
 </html>
